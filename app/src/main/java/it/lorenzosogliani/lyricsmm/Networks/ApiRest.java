@@ -57,9 +57,8 @@ public class ApiRest {
                     }
                     i++;
                 }
-                String url = stringBuilder.toString();
 
-                return url;
+                return stringBuilder.toString();
             }
         };
 
@@ -101,9 +100,51 @@ public class ApiRest {
                     }
                     i++;
                 }
-                String url = stringBuilder.toString();
 
-                return url;
+                return stringBuilder.toString();
+            }
+        };
+
+        MyApplication.addToRequestQueue(sendMessageRequest);
+
+        return true;
+    }
+    public static boolean getAlbumDetail(String id,Response.Listener<String> response, Response.ErrorListener errorListener){
+        final String uri;
+        uri = String.format(URL+"album.get");
+
+
+        final Map<String, String> params = new HashMap<String, String>();
+        params.put("apikey",API_KEY);
+        params.put("album_id",id);
+
+        StringRequest sendMessageRequest = new StringRequest(Request.Method.GET, uri, response, errorListener) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                return params;
+            }
+            @Override
+            public String getUrl() {
+                StringBuilder stringBuilder = new StringBuilder(uri);
+                int i = 1;
+                for (Map.Entry<String,String> entry: params.entrySet()) {
+                    String key;
+                    String value;
+                    try {
+                        key = URLEncoder.encode(entry.getKey(), "UTF-8");
+                        value = URLEncoder.encode(entry.getValue(), "UTF-8");
+                        if(i == 1) {
+                            stringBuilder.append("?" + key + "=" + value);
+                        } else {
+                            stringBuilder.append("&" + key + "=" + value);
+                        }
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                    i++;
+                }
+
+                return stringBuilder.toString();
             }
         };
 

@@ -37,12 +37,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:id="@+id/img_cover"
+                android:src="@drawable/placeholder_search"
                 android:layout_gravity="center_horizontal"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
+                android:layout_marginTop="20dp"
                 android:id="@+id/txt_lyrics"/>
         </LinearLayout>
     </ScrollView>
