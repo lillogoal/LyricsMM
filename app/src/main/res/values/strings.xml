@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LyricsMM</string>
+    <string name="title_activity_main">Top 25 Italian Hits</string>
+    <string name="si_verificato_un_errore">Si è verificato un errore imprevisto, riprova...</string>
+</resources>
