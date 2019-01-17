@@ -11,6 +11,8 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.signature.StringSignature;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -117,7 +119,12 @@ public class DetailTrackActivity extends AppCompatActivity {
                     track.getTrack().setAlbumCoverart500x500(album_coverart_500x500);
                     track.getTrack().setAlbumCoverart800x800(album_coverart_800x800);
 
-                    Glide.with(DetailTrackActivity.this).load(track.getTrack().getAlbumCoverart500x500()).into(img_cover);
+                    Glide.with(DetailTrackActivity.this)
+                            .load(track.getTrack().getAlbumCoverart500x500())
+                            .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                            .crossFade()
+                            .signature(new StringSignature(String.valueOf(track.getTrack().getAlbumId()+track.getTrack().getArtistName())))
+                            .into(img_cover);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
